@@ -231,7 +231,111 @@
         </defs>
       </svg>
       <h1>Hello, {{ title() }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
+      <p>Employee Registration Form with Tree Select</p>
+      
+      <!-- Employee Form -->
+      <div style="margin-top: 2rem; width: 100%; max-width: 600px;">
+        <p-card header="Employee Registration" [style]="{'width': '100%'}">
+          <form [formGroup]="exampleForm" (ngSubmit)="onSubmit()">
+            <div class="form-container">
+              <!-- Name Field -->
+              <div class="field">
+                <p-floatLabel>
+                  <input 
+                    pInputText 
+                    id="name" 
+                    formControlName="name"
+                    [style]="{'width': '100%'}"
+                  />
+                  <label for="name">Full Name *</label>
+                </p-floatLabel>
+                @if (exampleForm.get('name')?.invalid && exampleForm.get('name')?.touched) {
+                  <small class="error-message">
+                    @if (exampleForm.get('name')?.errors?.['required']) {
+                      Name is required
+                    }
+                    @if (exampleForm.get('name')?.errors?.['minlength']) {
+                      Name must be at least 3 characters
+                    }
+                  </small>
+                }
+              </div>
+
+              <!-- Email Field -->
+              <div class="field">
+                <p-floatLabel>
+                  <input 
+                    pInputText 
+                    id="email" 
+                    formControlName="email"
+                    type="email"
+                    [style]="{'width': '100%'}"
+                  />
+                  <label for="email">Email Address *</label>
+                </p-floatLabel>
+                @if (exampleForm.get('email')?.invalid && exampleForm.get('email')?.touched) {
+                  <small class="error-message">
+                    @if (exampleForm.get('email')?.errors?.['required']) {
+                      Email is required
+                    }
+                    @if (exampleForm.get('email')?.errors?.['email']) {
+                      Please enter a valid email
+                    }
+                  </small>
+                }
+              </div>
+
+              <!-- Department Tree Select -->
+              <div class="field">
+                <app-tree-select-field
+                  label="Department *"
+                  placeholder="Select Department"
+                  [options]="departmentOptions"
+                  formControlName="department"
+                />
+                @if (exampleForm.get('department')?.invalid && exampleForm.get('department')?.touched) {
+                  <small class="error-message">Department is required</small>
+                }
+              </div>
+
+              <!-- Team Tree Select -->
+              <div class="field">
+                <app-tree-select-field
+                  label="Team (Optional)"
+                  placeholder="Select Team"
+                  [options]="teamOptions"
+                  formControlName="team"
+                />
+              </div>
+
+              <!-- Form Actions -->
+              <div class="form-actions">
+                <p-button 
+                  label="Submit" 
+                  icon="pi pi-check" 
+                  type="submit"
+                  [disabled]="exampleForm.invalid"
+                />
+                <p-button 
+                  label="Reset" 
+                  icon="pi pi-refresh" 
+                  severity="secondary"
+                  [outlined]="true"
+                  type="button"
+                  (onClick)="resetForm()"
+                  [style]="{'margin-left': '0.5rem'}"
+                />
+              </div>
+
+              <!-- Form Value Display -->
+              <div class="form-value-display">
+                <h4>Form Value:</h4>
+                <pre>{{ formValue }}</pre>
+              </div>
+            </div>
+          </form>
+        </p-card>
+      </div>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">

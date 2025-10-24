@@ -1,0 +1,16 @@
+<div class="tree-select-field-wrapper">
+  <label *ngIf="label" class="field-label">{{ label }}</label>
+  <p-treeSelect
+    [options]="options"
+    [(ngModel)]="value"
+    (ngModelChange)="onValueChange($event)"
+    [placeholder]="placeholder"
+    [selectionMode]="selectionMode"
+    [metaKeySelection]="false"
+    [disabled]="disabled"
+    [filter]="filter"
+    [showClear]="showClear"
+    styleClass="w-full"
+    [style]="{'width': '100%'}"
+  />
+</div>

@@ -1,0 +1,83 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 0;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .error-message {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .form-value-display {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+
+    h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 0.875rem;
+      color: #1f2937;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  }
+}
+
+// Make sure floating labels work properly
+p-floatlabel {
+  display: block;
+  width: 100%;
+}
+
+// Style non-selectable tree nodes
+::ng-deep {
+  .p-treenode-selectable.p-treenode-content {
+    cursor: pointer;
+    
+    &:hover {
+      background-color: var(--p-highlight-bg, #e0f2fe) !important;
+    }
+  }
+
+  .p-treenode-content:not(.p-treenode-selectable) {
+    cursor: not-allowed;
+    opacity: 0.6;
+    
+    .p-tree-node-label {
+      color: #9ca3af;
+      font-style: italic;
+    }
+    
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+  
+  // Highlight selectable nodes (leaf nodes)
+  .p-treenode-leaf .p-treenode-content {
+    font-weight: 500;
+  }
+}
